@@ -1,0 +1,8 @@
+caption: Domov
+created: 20221117104002355
+custom-menu-content: <$transclude tiddler="$:/core/ui/Buttons/home"/>
+description: {{$:/language/Buttons/Home/Hint}}
+modified: 20221117112618456
+tags: $:/tags/MenuBar
+title: $:/radaprokuratorov/menubar/item/home
+type: text/vnd.tiddlywiki

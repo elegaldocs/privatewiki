@@ -1,0 +1,27 @@
+color: #bbb
+created: 20221119090612403
+icon: $:/core/images/options-button
+modified: 20221119092702093
+tags: $:/tags/Macro
+title: $:/ControlPanel1
+type: text/vnd.tiddlywiki
+
+! Editovanie
+
+<$fieldmangler tiddler="$:/plugins/tiddlywiki/readonly/set-auto-open-on-import">
+<$button message="tm-add-tag" 
+param="$:/tags/Macro">zakazanie editovania
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="hide"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="hide"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="hide"/>
+<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
+<$action-sendmessage $message="tm-close-all-tiddlers"/>
+</$button>
+<br>
+<$button message="tm-remove-tag" param="$:/tags/Macro">
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="show"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="show"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="show"/>
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+povolanie editovania</$button>
+</$fieldmangler>

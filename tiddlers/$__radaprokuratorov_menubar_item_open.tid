@@ -1,0 +1,10 @@
+caption: Otvorené stránky
+created: 20221117145538977
+description: {{$:/language/Buttons/Home/Hint}}
+is-dropdown: yes
+modified: 20221117145844779
+tags: $:/tags/MenuBar
+title: $:/radaprokuratorov/menubar/item/open
+type: text/vnd.tiddlywiki
+
+<$transclude tiddler="$:/core/ui/SideBar/Open"/>

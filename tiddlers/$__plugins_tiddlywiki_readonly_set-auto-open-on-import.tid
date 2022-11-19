@@ -1,0 +1,9 @@
+created: 20221116231803553
+modified: 20221119095407494
+tags: $:/tags/Macro
+title: $:/plugins/tiddlywiki/readonly/set-auto-open-on-import
+type: text/vnd.tiddlywiki
+
+\define tv-auto-open-on-import()
+no
+\end
