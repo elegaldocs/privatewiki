@@ -1,0 +1,8 @@
+created: 20211209191540430
+list-before: $:/config/ViewTemplateTitleFilters/default
+modified: 20211209192116544
+tags: $:/tags/ViewTemplateTitleFilter [[caption instead of title]]
+title: Display caption instead of title
+type: text/vnd.tiddlywiki
+
+[<currentTiddler>has[caption]then[$:/ui/ViewTemplate/title/useCaption]]

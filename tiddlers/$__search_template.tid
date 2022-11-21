@@ -1,0 +1,11 @@
+created: 20221121223541134
+modified: 20221121224159491
+tags: 
+title: $:/search/template
+type: text/vnd.tiddlywiki
+
+<$link to={{!!title}}>
+<$transclude field="caption">
+<$view field="caption"/>
+</$transclude>
+</$link>

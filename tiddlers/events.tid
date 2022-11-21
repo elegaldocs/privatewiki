@@ -1,0 +1,8 @@
+caption: Udalosti
+created: 20221121215445061
+modified: 20221121224439075
+tags: TableOfContents
+title: events
+type: text/vnd.tiddlywiki
+
+<<list-search filter:"[tag[events]limit[10]]"  search:"search:caption" class:"alert alert-info" stateTiddler:"$:/state/events" template:$:/search/template>>

@@ -1,0 +1,10 @@
+created: 20211209191523049
+modified: 20211209192123352
+tags: [[caption instead of title]]
+title: $:/ui/ViewTemplate/title/useCaption
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<h2 class="tc-title">
+<$transclude field="caption"><$view field="title"/></$transclude>
+</h2>

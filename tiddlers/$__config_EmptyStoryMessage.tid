@@ -1,5 +1,5 @@
 created: 20210323042919319
-modified: 20221117145012572
+modified: 20221121222844433
 tags: 
 title: $:/config/EmptyStoryMessage
 type: text/vnd.tiddlywiki
@@ -19,5 +19,3 @@ if your tiddler is more than 999 then this is not a good solution
 -->
 
 {{Rada prokurátorov Slovenskej republiky||$:/core/ui/ViewTemplate}}
-
-{{Prokuratúra||$:/core/ui/ViewTemplate}}
