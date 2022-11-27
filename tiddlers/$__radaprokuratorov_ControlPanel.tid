@@ -1,0 +1,37 @@
+created: 20221117155224829
+modified: 20221127213209084
+revision: 0
+tags: $:/tags/Macro
+title: $:/radaprokuratorov/ControlPanel
+type: text/vnd.tiddlywiki
+
+\define lock()
+<$action-listops $tiddler="$:/plugins/tiddlywiki/readonly/set-auto-open-on-import" $tags="+[[]] $:/tags/Macro"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="hide"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="hide"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="hide"/>
+<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
+<$action-setfield $tiddler="$:/temp/encrypt/filter" text=""/>
+<$action-sendmessage $message="tm-close-all-tiddlers"/>
+\end
+
+\define unlock()
+<$action-listops $tiddler="$:/plugins/tiddlywiki/readonly/set-auto-open-on-import" $tags="+[[]]"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="show"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="show"/>
+<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="show"/>
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+\end
+! Editovanie
+
+<$button>zakazanie editovania
+<<lock>>
+</$button>
+<br>
+<$button>povolanie editovania
+<<unlock>>
+</$button>
+
+[[$:/radaprokuratorov/documentCreator]]
+
+

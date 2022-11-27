@@ -1,0 +1,23 @@
+created: 20221121223541134
+modified: 20221127214124950
+revision: 0
+tags: $:/tags/Macro
+title: $:/radaprokuratorov/search/template
+type: text/vnd.tiddlywiki
+
+\define eventsSearch()
+<<list-search filter:"[tag<currentTiddler>limit[50]!sort[document_release_date]]"  search:"search:caption" class:"alert alert-info" stateTiddler:"$:/state/events" template:"$:/radaprokuratorov/search/template">>
+\end
+
+<dt>
+<$view field="document_release_date" format="date" template="0DD.0MM.YYYY"/>
+</dt>
+
+<dd><$link to={{!!title}}>
+<$transclude field="caption">
+<$view field="caption"/>
+</$transclude>
+</$link></dd>
+
+<dd><$transclude field="document_description" tag="span"/>
+<dd>

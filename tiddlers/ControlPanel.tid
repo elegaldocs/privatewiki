@@ -1,30 +1,33 @@
-created: 20221117155224829
-modified: 20221119193811805
-tags: $:/tags/Macro
-title: ControlPanel
-type: text/vnd.tiddlywiki
+created: 20221127175536716
+modified: 20221127195119154
+tags: 
+title: controlpanel
 
-! Editovanie
+\define lingo-base() $:/language/Search/
 
-<$fieldmangler tiddler="$:/plugins/tiddlywiki/readonly/set-auto-open-on-import">
-<$button message="tm-add-tag" 
-param="$:/tags/Macro">zakazanie editovania
 
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="hide"/>
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="hide"/>
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="hide"/>
+<div class="tc-search tc-advanced-search">
 
-<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
-<$action-sendmessage $message="tm-close-all-tiddlers"/>
+
+
+
+<$edit-text tag="input" tiddler="$:/temp/password1" placeholder="password" type="password" default="" col="4"/>
+<$edit-text tag="input" tiddler="$:/temp/password2" placeholder="confirm password" type="password" default="" col="4"/>
+<$encryptTiddler passwordTiddler1="$:/temp/password1" passwordTiddler2="$:/temp/password2" filter="$:/radaprokuratorov/ControlPanel">
+<$button message="tw-encrypt-tiddler">
+Encrypt
+<<lock>>
 </$button>
-<br>
-<$button message="tm-remove-tag" param="$:/tags/Macro">
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit" text="show"/>
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete" text="show"/>
-<$action-setfield $tiddler="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions" text="show"/>
-<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
-povolanie editovania</$button>
-</$fieldmangler>
+<$button message="tw-decrypt-tiddler">
+Decrypt
+</$button>
+</$encryptTiddler>
+
+</div>
 
 
 
+
+
+
+{{$:/radaprokuratorov/ControlPanel}}

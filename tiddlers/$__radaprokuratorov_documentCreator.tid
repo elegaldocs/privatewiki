@@ -1,0 +1,150 @@
+add_or_create_tag: existing
+caption: skuska
+created: 20221127203840893
+document_caption: 
+document_content: 
+document_description: 
+document_name: 
+document_release_date: 
+is-dropdown: no
+modified: 20221127210302697
+revision: 0
+tag_temp: 
+tags: 
+target: Prokuratúra
+title: $:/radaprokuratorov/documentCreator
+
+\define deleteTiddler()
+<$action-setfield document_content='' document_caption='' document_name='' document_release_date='' document_description='' tags='' tag_temp=''/>
+\end
+
+\define searchTiddler()
+<$linkcatcher actions=""" 
+<$action-setfield  document_name=<<navigateTo>>/>"""> 
+<<list-search filter:"[!is[system]]">>
+</$linkcatcher>
+<$button>Importovať dokument
+
+<$list filter="[{!!document_name}fields[]]-list -title -text -created -modified -type -flat" variable='tempx'>
+<$action-setmultiplefields $fields="[<tempx>]" $values="[{!!document_name}get<tempx>]"/>
+</$list>
+
+</$button>
+\end
+<$macrocall $name=details label="Vyhľadanie dokumentu" src=<<searchTiddler>>
+ labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+<br>
+
+!!! Krok 1 - ''Zadajte názov dokumentu'' 
+<$edit-text class='tc-edit-texteditor'  field='document_name' placeholder='Názov dokumentu'/><br>
+
+<$macrocall $name=details label="''Vyplňte obsah dokumentu''" src=
+"""
+Toto je hlavný obsah dokumentu.
+
+<$edit-text
+
+  field="document_content"
+  class="tc-edit-texteditor tc-edit-texteditor-body"
+
+
+  
+
+  tag=textarea
+
+><$set
+
+  name="targetTiddler"
+  value=<<currentTiddler>>
+
+><$list
+
+  filter="[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]!has[draft.of]]"
+
+><$reveal
+
+  type="nomatch"
+  state=<<config-visibility-title>>
+  text="hide"
+  class="tc-text-editor-toolbar-item-wrapper"
+
+><$transclude
+
+  tiddler="$:/core/ui/EditTemplate/body/toolbar/button"
+  mode="inline"
+
+/></$reveal></$list></$set></$edit-text>
+"""
+labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+
+<$macrocall $name=details label="''Caption'' (optional)" src=
+"""
+Tu môžete uviesť alternatívny titulok.
+<$edit-text class='tc-edit-texteditor' field='document_caption' placeholder='Caption dokumentu'/><br>"""
+ labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+
+<$macrocall $name=details label="''Krátky popis dokumentu'' (optional)" src=
+"""
+Toto môže byť použité ako krátky opis alebo súhrn toho, čo obsahuje každý dokument. To môže byť užitočné v zoznamoch.
+
+<$edit-text class='tc-edit-texteditor' field='document_description' placeholder='Popis dokumentu'/>"""
+ labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+<$macrocall $name=details label="''Dátum udalosti'' (optional)" src="""
+Tu môžete uviesť, kedy bol dokument vydaný, alebo sa udalosť stala. To môže byť užitočné pri vyhľadávaní.
+
+<$edit-text type="date"  field='document_release_date' fieldFormat="DDMMYYYY"/><br>"""
+ labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+
+
+<$macrocall $name=details label="''Pridajte tag alebo tagy k dokumentu'' (optional)" src=
+"""
+Tagy sa používajú pre obsah, takže je vhodné pridať značky novým dokumentom. Napríklad, ak by ste chceli pridať dokument, ktorý by sa zobrazoval pod 'protesty' v obsahu, pridajte značku 'protest' do dokumentu.
+
+<$select field='add_or_create_tag'>
+<option value='existing'>Pridať existujúci tag</option>
+<option value='create'>Pridať nový tag</option>
+</$select>
+<$reveal type=match state='!!add_or_create_tag' text='create'>
+New Tag Name: <$edit-text field='tag_temp' placeholder='Nový Tag'/><$fieldmangler>
+<$button>
+<$action-sendmessage $message='tm-add-tag' $param={{!!tag_temp}}/>
+<$action-setfield $field='tag_temp' $value=''/>Pridať Tag
+</$button>
+</$fieldmangler><br>
+</$reveal>
+<$reveal type='match' state='!!add_or_create_tag' text='existing'>
+Tag to add: <$select field='tag_temp'>
+<$list filter='[tags[]sort[title]]'>
+<option><$view field='title'/></option>
+</$list>
+</$select>
+<$fieldmangler>
+<$button>
+<$action-sendmessage $message='tm-add-tag' $param={{!!tag_temp}}/>Pridať Tag
+</$button>
+</$fieldmangler>
+</$reveal>
+Zoznam existujúcich tagov:<br>
+<$fieldmangler>
+<$set name=tiddlerEditing value='!!document_name'>
+<$list filter='[<currentTiddler>tags[]]'><$view field='title'/> <$button>Zmazať Tag<$action-sendmessage $message='tm-remove-tag' $param=<<currentTiddler>>/></$button><br> </$list>
+</$set>
+</$fieldmangler>
+"""
+labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+
+<$macrocall $name=details label="Krok 6 - ''Vytvorte dokument''" src=
+"""
+Stlačte toto tlačidlo a dokument bude vytvorený a otvorený, aby ste si ho mohli prezrieť.
+
+<$button>Vytvoriť dokument
+<$action-setfield $tiddler={{!!document_name}} text={{!!document_content}} document_content={{!!document_content}} caption={{!!document_caption}} document_name={{!!document_name}} document_description={{!!document_description}} document_release_date={{!!document_release_date}} tags={{!!tags}}/>
+<$action-navigate $to={{!!document_name}}/>
+<<deleteTiddler>>
+</$button>
+<$button>Vymazať formulár
+<<deleteTiddler>>
+</$button>
+"""
+ labelClass="alert alert-secondary py-1 my-2" srcClass="alert border-secondary py-0"/>
+
